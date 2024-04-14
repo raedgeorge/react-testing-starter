@@ -35,10 +35,15 @@ a:hover {
   border-radius: 5px;
 }
 
+.btn:disabled {
+  background: #ccc;
+}
+
 .input {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0.3rem 1rem;
+  background: #fff;
 }
 
 .input:focus {
