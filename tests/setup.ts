@@ -1,8 +1,19 @@
 import "@testing-library/jest-dom/vitest";
 import ResizeObserver from "resize-observer-polyfill";
 import { server } from "./mocks/server";
+import { PropsWithChildren, ReactNode } from "react";
 
-vi.mock("@auth0/auth0-react");
+vi.mock("@auth0/auth0-react", () => {
+  return {
+    useAuth0: vi.fn().mockReturnValue({
+      isAuthenticated: false,
+      isLoading: false,
+      user: undefined,
+    }),
+    Auth0Provider: ({ children }: PropsWithChildren) => children,
+    withAuthenticationRequired: (component: ReactNode) => component,
+  };
+});
 
 beforeAll(() => server.listen());
 
